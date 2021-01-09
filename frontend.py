@@ -132,10 +132,13 @@ class GameGui:
                            row * box_size + box_size*.7)
         puzzle_board.draw_text(tile_char, letter_location, font='Courier 25', color=color)        
     
-    def render_tile_label(self, row, col, tile_label):
+    def render_tile_label(self, row, col, tile_label, align='horizontal'):
         box_size = self.box_size
         puzzle_board = self.get_puzzle_interface()
-        puzzle_board.draw_text(tile_label, (col * box_size + box_size*.2, row * box_size+ box_size*.2))
+        if align == 'horizontal':
+            puzzle_board.draw_text(tile_label, (col * box_size + box_size*.2, row * box_size+ box_size*.4))
+        else: # for vertical words
+            puzzle_board.draw_text(tile_label, (col * box_size + box_size*.4, row * box_size+ box_size*.2))
         
     def render_tile_labels(self, horizontal_words, vertical_words):
         box_size = self.box_size
@@ -147,14 +150,14 @@ class GameGui:
             
             # unpack info:
             start_row, start_col = hori_word[0], hori_word[1]
-            self.render_tile_label(start_row, start_col, tile_label='h'+str(counter))
+            self.render_tile_label(start_row, start_col, tile_label='h'+str(counter), align='horizontal')
             counter += 1
         
         counter = 0
         for vert_word in vertical_words:
             # unpack info:            
             start_row, start_col = vert_word[0], vert_word[1]
-            self.render_tile_label(start_row, start_col,tile_label='v'+str(counter))
+            self.render_tile_label(start_row, start_col,tile_label='v'+str(counter), align='vertical')
             counter += 1
 
     def render_clues(self, horizontal_words, vertical_words):
