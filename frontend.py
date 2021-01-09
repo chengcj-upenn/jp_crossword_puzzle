@@ -8,6 +8,8 @@ class GameGui:
                    coor_sys_height=130
                   ):
         self.box_size = box_size
+        self.rows = 8
+        self.cols = 8
         sg.theme('SystemDefaultForReal') 
         
         layout = [
@@ -42,13 +44,9 @@ class GameGui:
     def monitor_events(self):
         return self.window.read()
     
-    def get_selected_tile(self):
-        mouse_coordinates = values['-PuzzleBoard-']
-        arrayindexij = 0
-        pass
-    
-    def display_puzzle(self, rows = 8, cols = 8, horizontal_words = [], vertical_words = [], show_answer=False):
-        
+    def display_puzzle(self, horizontal_words = [], vertical_words = [], show_answer=False):
+        rows = self.rows
+        cols = self.cols
         box_size = self.box_size
         puzzle_board = self.get_puzzle_interface()
         
@@ -81,13 +79,49 @@ class GameGui:
         if show_answer:
             self.window['-Status-'].update("Showing Answer")
 
-    def render_rectangle(self, row, col, fill_color='black'):
+    def render_rectangle(self, row, col, fill_color='black', line_color='black'):
         box_size = self.box_size
         puzzle_board = self.get_puzzle_interface()
         
         puzzle_board.draw_rectangle((col * box_size , row * box_size ), 
                                  ((col+1) * box_size , (row+1) * box_size ), 
-                                 line_color='black',  fill_color=fill_color)
+                                 line_color=line_color,  fill_color=fill_color)
+    def render_black_rectangles(self, words_matrix):
+        rows = self.rows
+        cols = self.cols
+        box_size = self.box_size
+        puzzle_board = self.get_puzzle_interface()
+        
+        for row in range(len(words_matrix)):            
+            for col in range(len(words_matrix[row])): 
+                if not (words_matrix[row][col]):
+                    self.render_rectangle(row, col, fill_color='black')                
+        
+    def render_selected_tile(self, row, col, fill_color='green'):
+        rows = self.rows
+        cols = self.cols
+        box_size = self.box_size
+        puzzle_board = self.get_puzzle_interface() 
+        
+        # draw polygon
+        points = [((col+.9) * box_size , (row+.1) * box_size ),
+                  ((col+.99) * box_size , (row+.1) * box_size ),
+                  ((col+.99) * box_size , (row+.2) * box_size )
+                 ]
+        puzzle_board.DrawPolygon(points, fill_color=fill_color)
+    
+    def clean_previous_selected_tiles(self, words_matrix):
+        rows = self.rows
+        cols = self.cols
+        box_size = self.box_size
+        puzzle_board = self.get_puzzle_interface()
+        # clear all previous polygons
+        for row in range(rows):
+            for col in range(cols):
+                self.render_selected_tile(row, col, fill_color='white')      
+        
+        self.render_black_rectangles(words_matrix)
+        
     
     def render_tile_char(self, row, col, tile_char, color='black'):
         box_size = self.box_size
@@ -145,3 +179,4 @@ class GameGui:
         print(clues)
 
         self.window['-Clues-'].update(clues)
+        
