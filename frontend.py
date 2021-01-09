@@ -16,7 +16,9 @@ class GameGui:
                       (0, coor_sys_height), 
                       (coor_sys_height, 0), 
                       key='-PuzzleBoard-',
-                      change_submits=True, drag_submits=False)],
+                      change_submits=True, drag_submits=False), 
+             sg.Text('\n                              '*24, key='-Clues-')
+            ],
         ]        
         
         # Generate japanese character input buttons
@@ -60,21 +62,22 @@ class GameGui:
         # render white squares
         for hori_word in horizontal_words:            
             # unpack info:
-            start_row, start_col, word_len = hori_word[0], hori_word[1], len(hori_word[2])            
+            start_row, start_col, word_len, clue = hori_word[0], hori_word[1], len(hori_word[2]), hori_word[3]
             for i in range(start_col, start_col + word_len):
                 self.render_rectangle(start_row, i, fill_color='white')                
                 if show_answer: self.render_tile_char(start_row, i, hori_word[2][i-start_col],'blue')
         for vert_word in vertical_words:
             # unpack info:            
-            start_row, start_col, word_len = vert_word[0], vert_word[1], len(vert_word[2])            
+            start_row, start_col, word_len, clue = vert_word[0], vert_word[1], len(vert_word[2]), hori_word[3]      
             for i in range(start_row, start_row + word_len):
                 self.render_rectangle(i, start_col, fill_color='white')
                 if show_answer: self.render_tile_char(i, start_col, vert_word[2][i-start_row],'blue')
         
         # render tile lables for vertical and horizontal words
         self.render_tile_labels(horizontal_words, vertical_words)
-        
+        self.render_clues(horizontal_words, vertical_words)
         self.window['-Status-'].update("Generated Puzzle")
+        
         if show_answer:
             self.window['-Status-'].update("Showing Answer")
 
@@ -119,3 +122,26 @@ class GameGui:
             start_row, start_col = vert_word[0], vert_word[1]
             self.render_tile_label(start_row, start_col,tile_label='v'+str(counter))
             counter += 1
+
+    def render_clues(self, horizontal_words, vertical_words):
+        box_size = self.box_size
+        puzzle_board = self.get_puzzle_interface()
+
+        counter = 0
+        clues = 'Clues:\n'
+        for hori_word in horizontal_words:
+            
+            # unpack info:
+            clue = hori_word[3]
+            clues = clues + 'h'+str(counter) + ') ' + clue + '\n'
+            counter += 1
+        
+        counter = 0
+        for vert_word in vertical_words:
+            # unpack info:            
+            clue = vert_word[3]
+            clues = clues + 'v'+str(counter) + ') ' + clue + '\n'
+            counter += 1
+        print(clues)
+
+        self.window['-Clues-'].update(clues)
