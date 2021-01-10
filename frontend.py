@@ -19,7 +19,7 @@ class GameGui:
                       (coor_sys_height, 0), 
                       key='-PuzzleBoard-',
                       change_submits=True, drag_submits=False), 
-             sg.Text('\n                              '*24, key='-Clues-')
+             sg.Text(('\n'+' '*60)*24, key='-Clues-')
             ],
         ]        
         
