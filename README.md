@@ -4,7 +4,7 @@
 
 ### Project summary
 
-Please provide a short (one paragraph) summary of your project. Consider this your elevator pitch.
+Some of us have picked up a hobby of learning new languages during these difficult times. We want to build a tool that can help people learn foreign lanugages, starting by learning the letters and vocabs via crossword puzzles!
 
 Include the link to your Devpost project page here: [Devpost](https://...)
 
@@ -12,51 +12,31 @@ Include the link to your Devpost project page here: [Devpost](https://...)
 
 * **Chin Jung Cheng** - chengcj – chengcj@seas.upenn.edu – [GitHub](https://github.com/chengcj-upenn)
 * **Sumit Garg** - sumitga – sumitga@seas.upenn.edu – [GitHub](https://github.com/sumitmcit)
-* **Name** - Devpost ID – Penn email – [GitHub](https://github.com/user_name)
 
 ## Usage
 
-This section walks a prospective user through the process of installing and running the project on their local machine. The more detailed and the more accurate, the better. User-friendly instructions will entice prospective users (including judges) to engage more deeply with your project, which could improve your hackathon score.
-
+The application is launched from an Interactive Python environment (jp_crossword_puzzle.ipynb). Once launched, a new window will pop up and the user can start clicking the button Generate Puzzle. User will see a new random crossword puzzle generated and can start solving it by selecting the tile on the puzzle and click the correct japanese character for that tile. If it is incorrect, it will show as red. User can also display the answer if they are stuck. A new random puzzle is generated every time the Generate Puzzle button is clicked.
 ### Prerequisites
 
-What prerequisites must be installed in order to run your project, and how do you install them?
-
-```
-Provide code samples in this fenced code block.
-```
+New users will just need an interactive python interface with Python3.8
 
 ### Installation
 
-Give a step-by-step rundown of how to **install** your project.
+To **install** the project, you need to open a shell to perform the following steps
 
 State step 1.
 ```
-Provide code samples in this fenced code block.
+git clone https://github.com/chengcj-upenn/jp_crossword_puzzle.git
 ```
 
 State step 2.
 ```
-Provide code samples in this fenced code block.
+python -m pip install pysimplegui
 ```
-
-Etc.
 
 ### Deployment
 
-Give a step-by-step rundown of how to **use** your project. Including screenshots in this section can be highly effective for highlighting specific features of your project.
-
-State step 1.
-```
-Provide code samples in this fenced code block.
-```
-
-State step 2.
-```
-Provide code samples in this fenced code block.
-```
-
-Etc.
+Once you open the interactive python workbook jp_crossword_puzzle.ipynb, you just need to run the first cell and then a new window will appear. The user can start clicking the button Generate Puzzle. User will see a new random crossword puzzle generated and can start solving it by selecting the tile on the puzzle and click the correct japanese character for that tile. If it is incorrect, it will show as red. User can also display the answer if they are stuck. A new random puzzle is generated every time the Generate Puzzle button is clicked.
 
 ## Additional information
 
@@ -64,34 +44,11 @@ Etc.
 
 Which frameworks, libraries, or other tools did you use to create your project?
 
-* [Tool 1](https://maven.apache.org/) - Description (e.g. "Web framework used")
-* [Tool 2](https://maven.apache.org/) - Description
-* [Tool 3](https://maven.apache.org/) - Description
+* [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/) - Frontend
 
 ### Acknowledgments
 
-Use anyone else's code? Inspired by a particular project? List / link here.
-
 * Japanese vocab JSON file: https://raw.githubusercontent.com/cemulate/genki-db/master/src/assets/vocab.json
-* Item 2
-* Item 3
-
-### License
-
-If desired, add a section for your license. Reference sites like https://choosealicense.com can help you choose which license meets your needs.
-
-*For example:*
-
->This package is licensed under the GNU General Public License v3.0 (<a href="https://choosealicense.com/licenses/gpl-3.0/" target="_blank">GPL-3</a>).
 
 
-references:
-<<<<<<< HEAD
-	- Japanese vocabs: https://raw.githubusercontent.com/cemulate/genki-db/master/src/assets/vocab.json
-
-Installation:
-	- The GUI interface is developed using pySimpleGUI. Please run below command to install it
-	  python -m pip install pysimplegui 
-=======
->>>>>>> 702784bda0740f9acd721da91665888442f63027
 	
