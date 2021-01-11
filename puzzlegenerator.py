@@ -54,7 +54,7 @@ class PuzzleGenerator:
                     regex += '.'
                 elif self.status[start_row][col] == 'v':
                     regex += self.words_matrix[start_row][col]
-                elif self.status[start_row][col] == 'illegal':
+                elif self.status[start_row][col] in ['illegal','h']:
                     break                    
         elif orientation == 'vertical':
             for row in range( start_row, self.rows):
@@ -62,7 +62,7 @@ class PuzzleGenerator:
                     regex += '.'
                 elif self.status[row][start_col] == 'h':
                     regex += self.words_matrix[row][start_col]
-                elif self.status[row][start_col] == 'illegal':
+                elif self.status[row][start_col] in ['illegal','v']:
                     break
 
         return self.replace_last_part_of_regex(regex) # allows matching for a shorter word
