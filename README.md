@@ -38,6 +38,9 @@ python -m pip install pysimplegui
 
 Once you open the interactive python workbook jp_crossword_puzzle.ipynb, you just need to run the first cell and then a new window will appear. The user can start clicking the button Generate Puzzle. User will see a new random crossword puzzle generated and can start solving it by selecting the tile on the puzzle and click the correct japanese character for that tile. If it is incorrect, it will show as red. User can also display the answer if they are stuck. A new random puzzle is generated every time the Generate Puzzle button is clicked.
 
+<img src="Crossword_Image1.png">
+<img src="Crossword_Image2.png">
+
 ## Additional information
 
 ### Tools used
