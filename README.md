@@ -40,6 +40,7 @@ Once you open the interactive python workbook jp_crossword_puzzle.ipynb, you jus
 
 <img src="Crossword_Image1.png">
 <img src="Crossword_Image2.png">
+<img src="Crossword_Image3.png">
 
 ## Additional information
 
