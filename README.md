@@ -6,7 +6,7 @@
 
 Some of us have picked up a hobby of learning new languages during these difficult times. We want to build a tool that can help people learn foreign lanugages, starting by learning the letters and vocabs via crossword puzzles!
 
-Include the link to your Devpost project page here: [Devpost](https://...)
+[Devpost](https://https://devpost.com/software/japanese-crossword-puzzle)
 
 ### Authors
 
