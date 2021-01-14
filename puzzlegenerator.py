@@ -1,6 +1,7 @@
 import importer
 import re
 import random
+import numpy
 
 class PuzzleGenerator:
     def __init__(self, rows, cols):
@@ -21,10 +22,12 @@ class PuzzleGenerator:
         
         # find a starting point of a horizontal word
         switch = True # starts with horizontal
-        for i in range(20):
+        
+        for i in range(60):
             orientation = 'horizontal' if switch else 'vertical'            
-            
-            start_row, start_col = self.select_start(orientation)
+            if (i==0):
+                    start_row, start_col = 0,0
+            else: start_row, start_col = self.select_start(orientation)
             print("start_row, start_col = ", start_row, start_col)
             regex = self.get_regex(start_row, start_col, orientation)
             if regex == 'false': continue # not possible to find word
@@ -126,13 +129,15 @@ class PuzzleGenerator:
         
             for row in range(self.rows): 
                 for col in range(self.cols - 1): #at least word of length 2
-                    if self.status[row][col] in ['empty','v']:
+                    intersectOrNot = numpy.random.choice(['empty','v'], p=[0.2, 0.8])
+                    if self.status[row][col] in intersectOrNot:
                         possible_row_col.append((row,col))
             start_row, start_col = random.choice(possible_row_col)
         elif orientation == 'vertical':
             for row in range(self.rows-1): #at least word of length 2
                 for col in range(self.cols): 
-                    if self.status[row][col] in ['empty','h']:
+                    intersectOrNot = numpy.random.choice(['empty','h'], p=[0.2, 0.8])
+                    if self.status[row][col] in intersectOrNot:
                         possible_row_col.append((row,col))
             start_row, start_col = random.choice(possible_row_col)
             
