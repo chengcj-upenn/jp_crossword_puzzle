@@ -27,7 +27,9 @@ class PuzzleGenerator:
             orientation = 'horizontal' if switch else 'vertical'            
             if (i==0):
                     start_row, start_col = 0,0
-            else: start_row, start_col = self.select_start(orientation)
+            else: 
+                start_row, start_col = self.select_start(orientation)
+                if (start_row == 'false'): continue                
             print("start_row, start_col = ", start_row, start_col)
             regex = self.get_regex(start_row, start_col, orientation)
             if regex == 'false': continue # not possible to find word
@@ -126,20 +128,22 @@ class PuzzleGenerator:
         print(self.status)
         
         if orientation == 'horizontal':
-        
+            intersectOrNot = numpy.random.choice(['empty','v'], p=[0.2, 0.8])
             for row in range(self.rows): 
                 for col in range(self.cols - 1): #at least word of length 2
-                    intersectOrNot = numpy.random.choice(['empty','v'], p=[0.2, 0.8])
                     if self.status[row][col] in intersectOrNot:
                         possible_row_col.append((row,col))
-            start_row, start_col = random.choice(possible_row_col)
+    
         elif orientation == 'vertical':
+            intersectOrNot = numpy.random.choice(['empty','h'], p=[0.2, 0.8])
             for row in range(self.rows-1): #at least word of length 2
                 for col in range(self.cols): 
-                    intersectOrNot = numpy.random.choice(['empty','h'], p=[0.2, 0.8])
                     if self.status[row][col] in intersectOrNot:
                         possible_row_col.append((row,col))
-            start_row, start_col = random.choice(possible_row_col)
+        
+        if (len(possible_row_col) == 0): return 'false', 'false'
+        
+        start_row, start_col = random.choice(possible_row_col)
             
         return start_row, start_col
     
